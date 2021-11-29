@@ -1,0 +1,37 @@
+﻿h1 , .content-header { font-family:Arial !important; font-style:normal !important}
+
+
+table, th, td, tr {
+  
+    vertical-align:middle  !important;
+    padding:3px  !important;
+    font-family:Century Gothic !important;
+    font-size:medium !important;
+    font-weight:normal !important;
+    
+}
+
+.GridView tr th
+{
+    border: 1px solid white !important;
+    color: White !important;
+    height:45px !important;
+    text-align:center !important;
+    vertical-align:middle !important;
+    font-size: medium !important;
+    font-weight:bold !important;
+    padding-left:5px !important;
+    padding-right:5px !important
+}
+
+.GridView tr td
+{
+    border: 1px solid white !important;
+    color: #222 !important;
+    height:45px  !important;
+    text-align:center  !important;
+    vertical-align:middle  !important;
+    padding-left:5px  !important;
+    padding-right:5px  !important;
+     font-size: medium !important;
+} 

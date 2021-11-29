@@ -1,0 +1,52 @@
+﻿h3
+{text-align:center; 
+ letter-spacing:5px; 
+ font: bold 7.5vmin 'verdana',sans-serif; 
+ text-shadow: 1px 1px 0 #fff, 2px 2px 0 gray
+}
+
+h4 
+{text-align:center; letter-spacing:2px; font: bold 7.5vmin 'verdana',sans-serif; text-shadow: 1px 1px 0 #fff, 2px 2px 0 gray;
+}
+.tit1
+{font-size:7vmin; color:White;
+    -webkit-transition: all 0.3s ease; /* Safari and Chrome */
+    -moz-transition: all 0.3s ease; /* Firefox */
+    -ms-transition: all 0.3s ease; /* IE 9 */
+    -o-transition: all 0.3s ease; /* Opera */
+    transition: all 0.3s ease;
+    
+}
+.tit1:hover{ cursor:pointer;text-shadow: 0 0 3px gray, 0 0 3px #CCCCCC, 0 0 5px #CCCCCC, 0 0 7px #CCCCCC, 0 0 15px #CCCCCC, 0 0 30px #CCCCCC; transition: all .25s ease;
+}
+.tit2
+{font-size:3.5vmin; color:White;
+    -webkit-transition: all 0.3s ease; /* Safari and Chrome */
+    -moz-transition: all 0.3s ease; /* Firefox */
+    -ms-transition: all 0.3s ease; /* IE 9 */
+    -o-transition: all 0.3s ease; /* Opera */
+    transition: all 0.3s ease;
+}
+.tit2:hover
+{cursor:pointer;text-shadow: 0 0 3px gray, 0 0 3px #CCCCCC, 0 0 5px #CCCCCC, 0 0 7px #CCCCCC, 0 0 15px #CCCCCC, 0 0 30px #CCCCCC; transition: all .25s ease;
+}
+.message3 
+{line-height:25px;
+  color:#FFFF99;
+   text-shadow:0 0 20px black;
+   font-size:2.5vmin;
+   -webkit-transition: all 200ms ease-in;
+    -ms-transition: all 200ms ease-in;
+    -moz-transition: all 200ms ease-in;
+    transition: all 200ms ease-in;
+    opacity:0;
+    font-family:Verdana !important;
+    font-weight:normal
+   
+}
+.message3:hover
+{text-shadow: 0 0 30px white;
+ color:#00FFFF;
+ cursor:pointer
+}
+
