@@ -304,7 +304,7 @@ Public Class _Default
             End If
         End If
 
-        ConvertirCampoImporteADecimal = importeFactura
+        ConvertirCampoImporteADecimal = importeFactura.ToString("0.00")
         Return importeFactura
     End Function
 
@@ -355,6 +355,7 @@ Public Class _Default
 #End Region
 
     Private Sub readFacturas(ByVal xmlsocio As String, ByVal conexion As Int32)
+
         Try
             'Recuperar lista de saldos de la api
             '1.Setear endpoint
@@ -405,7 +406,12 @@ Public Class _Default
                         dtFacturas.Rows(u).Item("Fecha_Emision") = dvdtFacturas.Rows(u).Item("Fecha_Emision")
                         dtFacturas.Rows(u).Item("Fecha_Vto") = dvdtFacturas.Rows(u).Item("Fecha_Vto")
                         dtFacturas.Rows(u).Item("Grupo_Fact") = dvdtFacturas.Rows(u).Item("Grupo_Fact")
-                        dtFacturas.Rows(u).Item("Importe") = dvdtFacturas.Rows(u).Item("Importe")
+                        Select Case ConfigurationManager.AppSettings("Empresa").ToString()
+                            Case "SUNCHALES", "MONTECARLO", "REALICO"
+                                dtFacturas.Rows(u).Item("Importe") = dvdtFacturas.Rows(u).Item("Importe")
+                            Case Else
+                                dtFacturas.Rows(u).Item("Importe") = Format(dvdtFacturas.Rows(u).Item("Importe"), "fixed")
+                        End Select
                         dtFacturas.Rows(u).Item("Factura") = dvdtFacturas.Rows(u).Item("Factura")
                         dtFacturas.Rows(u).Item("Conexion") = dvdtFacturas.Rows(u).Item("Conexion")
                         dtFacturas.Rows(u).Item("Pagada") = dvdtFacturas.Rows(u).Item("Pagada")
@@ -429,7 +435,12 @@ Public Class _Default
                         dtFacturas.Rows(u).Item("Fecha_Emision") = dvdtFacturas.Rows(u).Item("Fecha_Emision")
                         dtFacturas.Rows(u).Item("Fecha_Vto") = dvdtFacturas.Rows(u).Item("Fecha_Vto")
                         dtFacturas.Rows(u).Item("Grupo_Fact") = dvdtFacturas.Rows(u).Item("Grupo_Fact")
-                        dtFacturas.Rows(u).Item("Importe") = dvdtFacturas.Rows(u).Item("Importe")
+                        Select Case ConfigurationManager.AppSettings("Empresa").ToString()
+                            Case "SUNCHALES", "MONTECARLO", "REALICO"
+                                dtFacturas.Rows(u).Item("Importe") = dvdtFacturas.Rows(u).Item("Importe")
+                            Case Else
+                                dtFacturas.Rows(u).Item("Importe") = Format(dvdtFacturas.Rows(u).Item("Importe"), "fixed")
+                        End Select
                         dtFacturas.Rows(u).Item("Factura") = dvdtFacturas.Rows(u).Item("Factura")
                         dtFacturas.Rows(u).Item("Conexion") = dvdtFacturas.Rows(u).Item("Conexion")
                         dtFacturas.Rows(u).Item("Pagada") = dvdtFacturas.Rows(u).Item("Pagada")

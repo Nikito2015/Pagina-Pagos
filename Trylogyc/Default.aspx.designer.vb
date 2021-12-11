@@ -127,9 +127,9 @@ Partial Public Class _Default
     '''<remarks>
     '''Propiedad generada automáticamente.
     '''</remarks>
-    Public Shadows ReadOnly Property Master() As Trylogyc.Trylogyc
+    Public Shadows ReadOnly Property Master() As Trylogyc
         Get
-            Return CType(MyBase.Master, Trylogyc.Trylogyc)
+            Return CType(MyBase.Master, Trylogyc)
         End Get
     End Property
 End Class
