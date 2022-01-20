@@ -193,8 +193,8 @@
       <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="TrylogycWebsite.Common, Version=2021.6.26.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Trylogyc.Website.Common.2021.6.26.1\lib\netstandard2.0\TrylogycWebsite.Common.dll</HintPath>
+    <Reference Include="TrylogycWebsite.Common, Version=2021.12.24.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Trylogyc.Website.Common.2021.12.24.1\lib\netstandard2.0\TrylogycWebsite.Common.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>

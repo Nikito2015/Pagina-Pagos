@@ -64,6 +64,7 @@ Public Class _Default
                     .SingleOrDefault(), DataControlField).Visible = displayPagar
                 Me.BtnPagarMacro.Visible = Convert.ToBoolean(ConfigurationManager.AppSettings("botonMacroClick"))
                 Me.BtnPagarMP.Visible = Convert.ToBoolean(ConfigurationManager.AppSettings("botonMercadoPago"))
+                Me.BtnPagarFacil.Visible = Convert.ToBoolean(ConfigurationManager.AppSettings("BotonPagarFacil"))
             Else
                 SelectedPreferenceId = String.Empty
                 If login.ValidateSessionCookie() = True Then
@@ -392,6 +393,8 @@ Public Class _Default
                 dtFacturas.Columns.Add("Pagada")
                 dtFacturas.Columns.Add("IdPreferenciaPago")
                 dtFacturas.Columns.Add("Socio")
+                dtFacturas.Columns.Add("codigoBarra")
+
 
                 If conexion = 0 Then 'TODAS
                     'dvFacturas.RowFilter = "Socio =" & xmlsocio
@@ -416,6 +419,7 @@ Public Class _Default
                         dtFacturas.Rows(u).Item("Conexion") = dvdtFacturas.Rows(u).Item("Conexion")
                         dtFacturas.Rows(u).Item("Pagada") = dvdtFacturas.Rows(u).Item("Pagada")
                         dtFacturas.Rows(u).Item("Socio") = dvdtFacturas.Rows(u).Item("Socio")
+                        dtFacturas.Rows(u).Item("codigoBarra") = dvdtFacturas.Rows(u).Item("codigoBarra")
                         'TODO: Para la fila 10, si la factura está en la tabla nueva a crear "Pagos", mostrar "Pago en proceso" y quizás darle un color.
                         sumtotal = sumtotal + Convert.ToDouble(dvdtFacturas.Rows(u).Item("Importe"))
                     Next
@@ -445,6 +449,7 @@ Public Class _Default
                         dtFacturas.Rows(u).Item("Conexion") = dvdtFacturas.Rows(u).Item("Conexion")
                         dtFacturas.Rows(u).Item("Pagada") = dvdtFacturas.Rows(u).Item("Pagada")
                         dtFacturas.Rows(u).Item("Socio") = dvdtFacturas.Rows(u).Item("Socio")
+                        dtFacturas.Rows(u).Item("codigoBarra") = dvdtFacturas.Rows(u).Item("codigoBarra")
                         'TODO: Para la fila 10, si la factura está en la tabla nueva a crear "Pagos", mostrar "Pago en proceso" y quizás darle un color.
                         sumtotal = sumtotal + Convert.ToDouble(dvdtFacturas.Rows(u).Item("Importe"))
                     Next
@@ -611,6 +616,63 @@ Public Class _Default
                 Response.Redirect("~/PagarMacro.aspx")
             End If
         End If
+
+    End Sub
+
+    Protected Sub BtnPagarFacil_Click(sender As Object, e As ImageClickEventArgs) Handles BtnPagarFacil.Click
+        Dim chk As CheckBox, pagoEnProceso As Boolean
+        Dim socio As String = "" '= Convert.ToInt32(CType(row1.Cells(13), DataControlFieldCell).Text)
+        Dim idConexion As String = "" '= CType(row1.Cells(10), DataControlFieldCell).Text
+        Dim numfact As String = "" '= CType(row1.Cells(2), DataControlFieldCell).Text
+        Dim importe As String = "", importeFactura As Decimal  '= CType(row1.Cells(9), DataControlFieldCell).Text
+        Dim codigoBarra As String = ""
+        Dim HayChequeados As Boolean
+        Dim factura As TrylogycWebsite.Common.DTO.DTOFactura
+        Dim facturaList As New List(Of TrylogycWebsite.Common.DTO.DTOFactura)
+
+        Dim sb = New System.Text.StringBuilder()
+        Dim url As String
+        Dim api_key As String
+        api_key = ConfigurationManager.AppSettings("api_keyPagofacil")
+        url = ConfigurationManager.AppSettings("urlPagofacil")
+
+
+        For Each Fila As GridViewRow In GridView1.Rows
+
+            chk = Fila.FindControl("chkSel")
+            If chk.Checked Then
+                HayChequeados = chk.Checked
+                socio = Fila.Cells(13).Text
+                idConexion = Fila.Cells(10).Text
+                numfact = Fila.Cells(2).Text
+                importe = Fila.Cells(9).Text
+                importeFactura = ConvertirCampoImporteADecimal(importe)
+                codigoBarra = Fila.Cells(14).Text
+
+                If VerificarPagoEnProceso(socio, idConexion, numfact, importeFactura) Then
+                    pagoEnProceso = True
+                Else
+
+                    codigoBarra = Trim(codigoBarra)
+                    Response.Clear()
+
+                    sb.Append("<html lang='en'>")
+                    sb.Append("<body>")
+                    sb.AppendFormat("<form action='{0}' method='post'>  target='_blank'", url)
+                    sb.AppendFormat("<input type='hidden' id='api_key' name='api_key' value='{0}'><br>", api_key)
+                    sb.AppendFormat("<input type = 'text' id='codigo_barra' name='codigo_barra' value='{0}'><br>", codigoBarra)
+                    sb.AppendFormat("<body onload='document.forms[0].submit()'>")
+
+                    sb.Append("</form>")
+                    sb.Append("</body>")
+                    sb.Append("</html>")
+                    Response.Write(sb.ToString())
+                    Response.End()
+
+
+                End If
+            End If
+        Next
 
     End Sub
 

@@ -120,7 +120,8 @@ Public Class login
             Key .Fecha_Vto = elem.InvoiceExpirationDate,
             Key .Importe = elem.InvoiceAmmount,
             Key .Factura = elem.InvoiceTrackingNumber,
-            Key .Pagada = elem.Paid
+            Key .Pagada = elem.Paid,
+            Key .codigoBarra = elem.CodigoBarra
         })
 
         Dim dtBalances As New DataTable()
@@ -136,12 +137,13 @@ Public Class login
         dtBalances.Columns.Add("Importe")
         dtBalances.Columns.Add("Factura")
         dtBalances.Columns.Add("Pagada")
+        dtBalances.Columns.Add("codigoBarra")
 
 
         For Each balance In balancesList
             dtBalances.Rows.Add(New Object() {
             balance.Socio, balance.Conexion, balance.Periodo, balance.Grupo_Fact, balance.Letra, balance.Pto_Venta, balance.Numero, balance.Fecha_Emision,
-            balance.Fecha_Vto, balance.Importe, balance.Factura, balance.Pagada
+            balance.Fecha_Vto, balance.Importe, balance.Factura, balance.Pagada, balance.codigoBarra
             })
         Next
         CreateDataTableBalances = dtBalances

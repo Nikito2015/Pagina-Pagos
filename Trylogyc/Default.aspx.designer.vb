@@ -95,6 +95,15 @@ Partial Public Class _Default
     Protected WithEvents BtnPagarMacro As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
+    '''Control BtnPagarFacil.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents BtnPagarFacil As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
     '''Control sqlFacturas.
     '''</summary>
     '''<remarks>

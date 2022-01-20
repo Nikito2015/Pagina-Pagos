@@ -69,13 +69,15 @@
                             <asp:Label ID="lblError" runat="server" Text="Label" Font-Bold="True" Font-Names="Calibri"></asp:Label>
                         </div>
 
-                        <asp:GridView ID="GridView1" runat="server" Caption="Facturas" EmptyDataText="No hay Facturas para Mostrar" Font-Size="Smaller"  CssClass="table table-bordered table-hover no-margin grid-table" PageSize="50" CellSpacing="0" HorizontalAlign="Left" CaptionAlign="Top" HeaderStyle-HorizontalAlign="Center" RowStyle-HorizontalAlign="Center" AutoGenerateColumns="false">
+                        <asp:GridView ID="GridView1" runat="server" Caption="Facturas" EmptyDataText="No hay Facturas para Mostrar" Font-Size="Smaller"  CssClass="table table-bordered table-hover no-margin grid-table" PageSize="50" HorizontalAlign="Left" CaptionAlign="Top" HeaderStyle-HorizontalAlign="Center" RowStyle-HorizontalAlign="Center" AutoGenerateColumns="False">
                             <Columns>
                                 <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:ImageButton ID="cmdPDF2" CommandName="cmdPDF2" runat="server" Text="" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'
                                             Width="20px" OnClick="cmdPDF2_Click" ImageUrl="~/Images/pdf.jpg" />
                                     </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Pagar" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
@@ -85,6 +87,8 @@
                                         <%--asp:ImageButton ID="btnPagarMacro" CommandName="btnPagarMacro" runat="server" ImageUrl="~/Images/macroclick.png" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'
                                             Visible='<%# If(Eval("Pagada").ToString() = False, True, False) %>' /--%>                                        
                                     </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
                                 </asp:TemplateField>
                                 <asp:BoundField HeaderText="Factura" DataField="Nro_Factura" />
                                 <asp:BoundField HeaderText="Pto Venta" DataField="Pto_Venta" />
@@ -99,7 +103,13 @@
                                 <asp:BoundField HeaderText="IdPreferenciaPago" DataField="IdPreferenciaPago" Visible="false" />
                                 <asp:BoundField HeaderText="Socio" DataField="Socio" Visible="true" />
 
+                                <asp:BoundField DataField="codigoBarra" HeaderText="codigoBarra" Visible="false" />
+
                             </Columns>
+
+<HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+
+<RowStyle HorizontalAlign="Center"></RowStyle>
                         </asp:GridView>
                     </div>
                     <br />
@@ -108,13 +118,12 @@
                             <div class="col-md-3">
                                 <div style="width: 20%; float:left">
                                    <asp:ImageButton ID = "BtnPagarMP" runat = "server" ImageUrl = "~/Images/mercadoPago.jpg"/>
-                                </div>
-                                <div style="width: 20%; float:right">
+                                    <asp:ImageButton ID="BtnPagarMacro" runat="server" ImageUrl="~/Images/macroclick.png" Width="57px" Height="27px"/>
+                                    <asp:ImageButton ID="BtnPagarFacil" runat="server" ImageUrl="~/Images/pagofacil.png" Width="57px" Height="27px"/>
                                     
-                                   <asp:ImageButton ID="BtnPagarMacro" runat="server" ImageUrl="~/Images/macroclick.png" Width="57px" Height="27px"/>
-                                
                                 </div>
-                                
+                            
+                          
                             </div>
                             <div class="col-md-6" style="margin-left: 70px">
                                 <div style="float: right">
