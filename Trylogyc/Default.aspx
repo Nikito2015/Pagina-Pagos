@@ -103,7 +103,7 @@
                                 <asp:BoundField HeaderText="IdPreferenciaPago" DataField="IdPreferenciaPago" Visible="false" />
                                 <asp:BoundField HeaderText="Socio" DataField="Socio" Visible="true" />
 
-                                <asp:BoundField DataField="codigoBarra" HeaderText="codigoBarra" Visible="false" />
+                                <asp:BoundField DataField="codigoBarra" HeaderText="codigoBarra" Visible="true" />
 
                             </Columns>
 
